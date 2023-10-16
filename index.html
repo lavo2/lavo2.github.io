@@ -1,5 +1,61 @@
-<head>test</head>
-test
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Graph</title>
+    <style>
+        #graph {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+
+        .node {
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .edge {
+            position: absolute;
+            background-color: gray;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div id="graph">
+        <div class="node" id="center-node" style="left: 135px; top: 135px;"></div>
+    </div>
+
+    <script>
+        const graph = document.getElementById('graph');
+        const centerNode = document.getElementById('center-node');
+
+        centerNode.addEventListener('click', () => {
+            const newNode = document.createElement('div');
+            newNode.classList.add('node');
+            newNode.style.left = `${getRandomPosition(30, 270)}px`;
+            newNode.style.top = `${getRandomPosition(30, 270)}px`;
+
+            const edge = document.createElement('div');
+            edge.classList.add('edge');
+            edge.style.left = `${parseInt(centerNode.style.left) + 15}px`;
+            edge.style.top = `${parseInt(centerNode.style.top) + 15}px`;
+
+            graph.appendChild(newNode);
+            graph.appendChild(edge);
+        });
+
+        function getRandomPosition(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
 
 <script src="./oneko.js"></script>
 <script src="./oneko.js"></script>
+</html>
+

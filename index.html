@@ -1,61 +1,50 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Graph</title>
+    <title>Click to Add Cat Treat</title>
     <style>
-        #graph {
-            width: 300px;
-            height: 300px;
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
             position: relative;
+            width: 100%;
+            height: 100vh;
         }
 
-        .node {
-            width: 30px;
-            height: 30px;
-            background-color: blue;
-            border-radius: 50%;
+        .cat-treat {
             position: absolute;
-        }
-
-        .edge {
-            position: absolute;
-            background-color: gray;
-            z-index: -1;
+            width: 50px;
+            height: 50px;
+            background-image: url('cat-treat.webp'); /* Replace 'cat-treat.webp.png' with your cat treat image */
+            background-size: cover;
         }
     </style>
 </head>
 <body>
-    <div id="graph">
-        <div class="node" id="center-node" style="left: 135px; top: 135px;"></div>
-    </div>
-
+    <div id="container"></div>
     <script>
-        const graph = document.getElementById('graph');
-        const centerNode = document.getElementById('center-node');
+        const container = document.getElementById('container');
+        let treatCount = 0;
 
-        centerNode.addEventListener('click', () => {
-            const newNode = document.createElement('div');
-            newNode.classList.add('node');
-            newNode.style.left = `${getRandomPosition(30, 270)}px`;
-            newNode.style.top = `${getRandomPosition(30, 270)}px`;
+        container.addEventListener('click', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
 
-            const edge = document.createElement('div');
-            edge.classList.add('edge');
-            edge.style.left = `${parseInt(centerNode.style.left) + 15}px`;
-            edge.style.top = `${parseInt(centerNode.style.top) + 15}px`;
+            const treat = document.createElement('div');
+            treat.className = 'cat-treat';
+            treat.style.left = x - 25 + 'px'; // Center horizontally (adjust for half width)
+            treat.style.top = y - 25 + 'px';  // Center vertically (adjust for half height)
 
-            graph.appendChild(newNode);
-            graph.appendChild(edge);
+            container.appendChild(treat);
+            treatCount++;
         });
-
-        function getRandomPosition(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
     </script>
 </body>
-
-<script src="./oneko.js"></script>
-<script src="./oneko.js"></script>
 </html>
 
+<script src="./oneko.js"></script>

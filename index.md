@@ -2,6 +2,7 @@
 layout: single
 title: "Work in progress"
 author_profile: true
+sitemap: true
 ---
 
 <p style="text-align:center;">

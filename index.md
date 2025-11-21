@@ -1,10 +1,7 @@
-permalink: /about/
+---
+layout: single
 title: "Work in progress"
 author_profile: true
-redirect_from: 
-  - /
-  - /about/
-  - /about.html
 ---
 
 <p style="text-align:center;">
